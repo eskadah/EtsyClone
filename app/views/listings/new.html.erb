@@ -1,0 +1,25 @@
+<div class = 'container'>
+	<div class = 'row'>
+		<div class='col-xs-3'>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<%= image_tag(@listing.image.url(:small),width:'200px',height:'200px')%>
+
+		</div>
+		<div class='col-xs-6'>
+			<h1 class = 'text-center'>New listing</h1>
+			<%= render 'form' %>
+
+			<div class = 'pull-right'>
+				<%= link_to 'Back', listings_path,class:'btn btn-small btn-default'%>
+			</div>
+
+		</div>
+		<div class='col-xs-3'></div>
+	</div>
+</div>
+
+

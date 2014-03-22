@@ -1,0 +1,33 @@
+
+<div class = 'container'>
+<h1>Listings</h1>
+<table class = 'table table-striped'>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <%#TODO: Need to refactor styles on index page %>
+  <tbody>
+    <% @listings.each do |listing| %>
+      <tr>
+        <td style='vertical-align: middle;'><%= image_tag listing.image.url(:medium) %></td>
+        <td style='vertical-align: middle;'><%= listing.name %></td>
+        <td style='vertical-align: middle;'><%= listing.description %></td>
+        <td style='vertical-align: middle;'><%= listing.price %></td>
+        <td style='vertical-align: middle;'><%= link_to 'Show', listing ,class: 'btn btn-link'%></td>
+        <td style='vertical-align: middle;'><%= link_to 'Edit', edit_listing_path(listing),class: 'btn btn-link' %></td>
+        <td style='vertical-align: middle;'><%= link_to 'Destroy', listing,class: 'btn btn-link', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'New Listing', new_listing_path,class: 'btn btn-link' %>
+</div>
+<br>
