@@ -14,3 +14,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+#/config/dropbox.yml
+
+# Ignore application configuration
+/config/application.yml
+
+#ignore local files
+/public/system
