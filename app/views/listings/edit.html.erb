@@ -7,7 +7,7 @@
          <br>
          <br>
          <br>
-         <%= image_tag(@listing.image.url(:medium))%>
+         <a href= <%= url_for(@listing)%>><%= image_tag(@listing.image.url(:medium), class:'img-responsive')%></a>
 
 		</div>
 		<div class='col-xs-6'>
