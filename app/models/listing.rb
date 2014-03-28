@@ -7,4 +7,9 @@ class Listing < ActiveRecord::Base
 		:dropbox_credentials => Rails.root.join('config/dropbox.yml'),
 		:path => ":style/:id_:filename"
 	end
+
+   validates_presence_of(:name,:description,:price)
+   validates_numericality_of(:price,:greater_than => 0)
+
+   belongs_to :user
 end

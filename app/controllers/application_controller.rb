@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, :if => :devise_controller?
-
+  helper_method :current_user?
 
   protected
 
@@ -11,5 +11,9 @@ class ApplicationController < ActionController::Base
   	devise_parameter_sanitizer.for(:sign_up) << :name
   	devise_parameter_sanitizer.for(:account_update) << :name
   end
+
+  def current_user?(listing)
+	  current_user && current_user.id == listing.user_id 
+    end
 
 end
