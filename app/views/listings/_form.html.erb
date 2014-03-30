@@ -1,14 +1,12 @@
 <%= form_for(@listing,:html => {:multipart => true, :class => 'form-horizontal'}) do |f| %>
   <% if @listing.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
-
-      <ul>
+  <div class = 'devise_error text-center form-group bg-danger'>
+    <ul class = 'list-unstyled' >
       <% @listing.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <li> <%= msg %> </li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
 
   <div class="form-group">

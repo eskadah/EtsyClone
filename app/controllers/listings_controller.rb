@@ -1,5 +1,7 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:index,:show]
+  before_action :correct_user, :except => [:index,:show,:new]
 
   # GET /listings
   # GET /listings.json
@@ -24,7 +26,9 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
+
     @listing = Listing.new(listing_params)
+    @listing.user_id = current_user.id
 
     respond_to do |format|
       if @listing.save
@@ -61,6 +65,11 @@ class ListingsController < ApplicationController
     end
   end
 
+  def seller
+    @listings = Listing.where("user_id = ?",current_user.id)
+   # render('index')
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
@@ -70,5 +79,11 @@ class ListingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
       params.require(:listing).permit(:name, :description, :price,:image)
+    end
+
+    def correct_user
+      if @listing
+        redirect_to(:root,alert: "You cannot modify that Listing") unless current_user.id == @listing.user_id
+      end
     end
 end

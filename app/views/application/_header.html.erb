@@ -1,5 +1,5 @@
 <div class="navbar-wrapper">
-  
+
 
   <div class="navbar navbar-default " id="navigate" role="navigation">
     <div class="container">
@@ -13,12 +13,24 @@
         <a class="navbar-brand"  id = 'logo' href="/">Etsy Demo</a>
       </div>
       <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav pull-right">
-          
+        <ul class="nav navbar-nav">
+
           <li><a href="/pages/about">About</a></li>
-          <li><a href="/pages/contact">Contact</a></li>
-          
+          <li><a href="/pages/contact">Contact</a></li>  
         </ul>
+        <% if user_signed_in? %>
+        <ul class="nav navbar-nav pull-right">
+          <li><%= link_to('My Listings', seller_path)%></li> 
+          <li><%= link_to('Edit Profile', edit_user_registration_path)%></li> 
+          <li><%= link_to('Log Out', destroy_user_session_path, :method => 'delete')%></li> 
+        </ul>
+        <% else %>
+        <ul class="nav navbar-nav pull-right">
+          <li><%= link_to('Log In', new_user_session_path)%></li> 
+          <li><%= link_to('Sign Up', new_user_registration_path)%></li> 
+
+        </ul>
+        <% end %>
       </div>
     </div>
 

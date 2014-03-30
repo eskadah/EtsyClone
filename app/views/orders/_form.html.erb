@@ -1,0 +1,28 @@
+<%= form_for([@listing,@order], :class => 'form-horizontal') do |f| %>
+  <% if @order.errors.any? %>
+<div class = 'devise_error text-center form-group bg-danger'>
+    <ul class = 'list-unstyled' >
+      <% @listing.errors.full_messages.each do |msg| %>
+      <li> <%= msg %> </li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :address %><br>
+    <%= f.text_field :address,:class => 'form-control'  %>
+  </div>
+  <div class="form-group">
+    <%= f.label :city %><br>
+    <%= f.text_field :city,:class => 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :state %><br>
+    <%= f.text_field :state,:class => 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+

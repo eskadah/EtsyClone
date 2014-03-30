@@ -3,7 +3,7 @@
 	<div class = 'row' >
 		<div class = 'col-md-6'>
 			<div class ='thumbnail'>
-			<%= image_tag(@listing.image.url) %>
+			<%= image_tag(@listing.image.url, class:'img-responsive') %>
 		</div>
 		</div>
 		<div class = 'col-md-6'>
@@ -17,9 +17,12 @@
 			<p>
 				<%= @listing.description %>
 			</p>
+			<br>
+			<br>
+			<%= button_to 'Purchase Item',new_listing_order_path(@listing), class: 'btn btn-success', method:'get' %>
 		</div>
 	</div>
 	<p>
-		<%= link_to 'Edit', edit_listing_path(@listing),class: 'btn btn-link' %> |<%= link_to 'Back', listings_path,class: 'btn btn-link' %>
+		<%= link_to('Edit', edit_listing_path(@listing),class: 'btn btn-link') if current_owner?(@listing) %> |<%= link_to 'Back',:back,class: 'btn btn-link' %>
 	</p>
 </div>					

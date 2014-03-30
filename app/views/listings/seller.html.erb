@@ -1,0 +1,42 @@
+
+<div class = 'container'>
+  <h1>My Listings</h1>
+  <br>
+  <table class = 'table table-striped table-bordered'>
+    <thead>
+      <tr>
+        <th class = 'text-center'>Image</th>
+        <th class = 'text-center'>Name</th>
+        <th class = 'text-center'>Description</th>
+        <th class = 'text-center'>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <%#TODO: Need to refactor styles on index page %>
+    <tbody>
+      <% @listings.each do |listing| %>
+      <tr>
+        <td style='vertical-align: middle;'><%= image_tag listing.image.url(:thumb) %></td>
+        <td style='vertical-align: middle;'><%= listing.name %></td>
+        <td style='vertical-align: middle;'><%= listing.description %></td>
+        <td style='vertical-align: middle;'><%= number_to_currency listing.price %></td>
+        <td style='vertical-align: middle'> 
+          <div class=" center-block dropdown" style='vertical-align: middle; width:147px'>
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+              Manage Listing
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li role="presentation"><%= link_to 'Show', listing ,tabindex:'-1'%></li>
+              <li role="presentation"><%= link_to 'Edit', edit_listing_path(listing),tabindex:'-1' %></li>
+              <li role="presentation"><%= link_to 'Destroy', listing,tabindex:'-1', method: :delete, data: { confirm: 'Are you sure?' } %></li>
+            </ul>
+          </div>
+        </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New Listing', new_listing_path,class: 'btn btn-link' %>
+  </div>
+  <br>

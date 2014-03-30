@@ -7,7 +7,7 @@
          <br>
          <br>
          <br>
-         <%= image_tag(@listing.image.url(:medium))%>
+         <a href= <%= url_for(@listing)%>><%= image_tag(@listing.image.url(:medium), class:'img-responsive')%></a>
 
 		</div>
 		<div class='col-xs-6'>
@@ -15,7 +15,7 @@
 			<%= render 'form' %>
 
 			<div class = 'pull-right'>
-				<%= link_to 'Show', @listing,class:'btn btn-small btn-default' %> <%= link_to 'Back', listings_path,class:'btn btn-small btn-default'  %>
+				<%= link_to 'Show', @listing,class:'btn btn-small btn-default' %> <%= link_to 'Back', :back,class:'btn btn-small btn-default'  %>
 			</div>
 
 		</div>
