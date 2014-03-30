@@ -30,16 +30,9 @@
               <li role="presentation"><%= link_to 'Show', listing ,tabindex:'-1'%></li>
               <li role="presentation"><%= link_to 'Edit', edit_listing_path(listing),tabindex:'-1' %></li>
               <li role="presentation"><%= link_to 'Destroy', listing,tabindex:'-1', method: :delete, data: { confirm: 'Are you sure?' } %></li>
-              <!-- <li role="presentation" class="divider"></li> -->
-              <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li> -->
             </ul>
           </div>
         </td>
-         <!--
-          <td style='vertical-align: middle;'><%= link_to 'Show', listing ,class: 'btn btn-link'%></td>
-          <td style='vertical-align: middle;'></td>
-          <td style='vertical-align: middle;'><%= link_to 'Destroy', listing,class: 'btn btn-link', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        -->
         </tr>
         <% end %>
       </tbody>

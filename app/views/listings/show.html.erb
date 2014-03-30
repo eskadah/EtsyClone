@@ -17,6 +17,9 @@
 			<p>
 				<%= @listing.description %>
 			</p>
+			<br>
+			<br>
+			<%= button_to 'Purchase Item',new_listing_order_path(@listing), class: 'btn btn-success', method:'get' %>
 		</div>
 	</div>
 	<p>
