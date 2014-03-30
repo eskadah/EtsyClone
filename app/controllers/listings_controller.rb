@@ -65,6 +65,11 @@ class ListingsController < ApplicationController
     end
   end
 
+  def seller
+    @listings = Listing.where("user_id = ?",current_user.id)
+   # render('index')
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
@@ -77,6 +82,8 @@ class ListingsController < ApplicationController
     end
 
     def correct_user
-      redirect_to(:root,alert: "You cannot modify that Listing") unless current_user.id == @listing.user_id
+      if @listing
+        redirect_to(:root,alert: "You cannot modify that Listing") unless current_user.id == @listing.user_id
+      end
     end
 end

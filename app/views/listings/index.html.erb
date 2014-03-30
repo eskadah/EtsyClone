@@ -15,7 +15,7 @@
 
           </p>
           <p>
-            <% if current_user && current_user?(listing) %>
+            <% if current_page?({:controller => "listings",:action =>'seller'}) %>
               <%#= link_to 'Show', listing ,class: 'btn btn-default'%>
               <%= link_to 'Edit', edit_listing_path(listing),class: 'btn btn-default' %>      
               <%= link_to 'Destroy', listing,class: 'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } %>

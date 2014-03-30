@@ -20,6 +20,6 @@
 		</div>
 	</div>
 	<p>
-		<%= link_to('Edit', edit_listing_path(@listing),class: 'btn btn-link') if current_user?(@listing) %> |<%= link_to 'Back', listings_path,class: 'btn btn-link' %>
+		<%= link_to('Edit', edit_listing_path(@listing),class: 'btn btn-link') if current_owner?(@listing) %> |<%= link_to 'Back',:back,class: 'btn btn-link' %>
 	</p>
 </div>					

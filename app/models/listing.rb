@@ -12,4 +12,6 @@ class Listing < ActiveRecord::Base
    validates_numericality_of(:price,:greater_than => 0)
 
    belongs_to :user
+
+   default_scope order('created_at DESC')
 end
