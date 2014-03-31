@@ -19,10 +19,20 @@
           <li><a href="/pages/contact">Contact</a></li>  
         </ul>
         <% if user_signed_in? %>
+
         <ul class="nav navbar-nav pull-right">
-          <li><%= link_to('My Listings', seller_path)%></li> 
-          <li><%= link_to('Edit Profile', edit_user_registration_path)%></li> 
-          <li><%= link_to('Log Out', destroy_user_session_path, :method => 'delete')%></li> 
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name.capitalize%> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to('My Listings', seller_path)%></li>
+            <li><%= link_to('My Sales', sales_path)%></li>
+            <li><%= link_to('My Purchases', purchases_path)%></li>
+            <li class="divider"></li>
+            <li><%= link_to('Edit Profile', edit_user_registration_path)%></li> 
+            <li><%= link_to('Log Out', destroy_user_session_path, :method => 'delete')%></li>
+          </ul>
+          <!-- <li><%= link_to('My Listings', seller_path)%></li>  -->
+           
         </ul>
         <% else %>
         <ul class="nav navbar-nav pull-right">

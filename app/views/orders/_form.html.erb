@@ -1,28 +1,58 @@
-<%= form_for([@listing,@order], :class => 'form-horizontal') do |f| %>
-  <% if @order.errors.any? %>
+<%= form_for([@listing,@order], :class => 'form-horizontal',:id => 'new_order') do |f| %>
+<% if @order.errors.any? %>
 <div class = 'devise_error text-center form-group bg-danger'>
-    <ul class = 'list-unstyled' >
-      <% @listing.errors.full_messages.each do |msg| %>
-      <li> <%= msg %> </li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
+  <ul class = 'list-unstyled' >
+    <% @order.errors.full_messages.each do |msg| %>
+    <li> <%= msg %> </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="form-group">
-    <%= f.label :address %><br>
-    <%= f.text_field :address,:class => 'form-control'  %>
+<div id = 'stripe_error' class = 'alert alert-danger' style ='display:none'>
+  <noscript> Javascript is not enabled.Please enable Javascript in your browser settings to continue </noscript>
+</div>
+
+<div class="form-group">
+  <%= f.label :address %><br>
+  <%= f.text_field :address,:class => 'form-control'  %>
+</div>
+<div class="form-group">
+  <%= f.label :city %><br>
+  <%= f.text_field :city,:class => 'form-control' %>
+</div>
+<div class="form-group">
+  <%= f.label :state %><br>
+  <%= f.text_field :state,:class => 'form-control' %>
+</div>
+
+<div class="form-group">
+  <div class = 'row'>
+    <div class = 'col-md-8'>
+      <%= label_tag :card_number, 'Credit Card Number' %><br>
+      <%= text_field_tag :card_number,nil,{:name => nil,:'data-stripe' => 'number',:class => 'form-control'} %>
+    </div>
+
+    <div class='col-md-4'>
+      <%= label_tag  :card_code, 'CVC' %><br>
+      <%= text_field_tag :card_code,nil,{:name => nil,:'data-stripe' => 'cvc',:class => 'form-control'} %>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :city %><br>
-    <%= f.text_field :city,:class => 'form-control' %>
+</div>
+
+<div class ='form-group'>
+  <div class = 'row'>
+    <div class = 'col-md-8'>
+      <%= select_month nil, {use_two_digit_numbers: true,:prompt => 'Expiration Month'},{:name => nil,:'data-stripe' => 'exp-month',:class => 'form-control'} %>
+    </div>
+    <div class='col-md-4'>
+      <%= select_year nil, {start_year: Date.today.year,end_year:Date.today.year + 10,:prompt => 'Expiration Year' },{:name => nil,:'data-stripe' => 'exp-year',:class => 'form-control'} %>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :state %><br>
-    <%= f.text_field :state,:class => 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-  </div>
+</div>
+
+<div class="form-group">
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+</div>
 <% end %>
 

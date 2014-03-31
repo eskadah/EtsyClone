@@ -34,9 +34,22 @@ class OrdersController < ApplicationController
     @order.seller_id = @listing.user_id
     @order.listing_id = listing_id
 
+    Stripe.api_key = ENV["STRIPE_API_KEY"]
+    token = params[:stripeToken]
+    begin
+      charge = Stripe::Charge.create(
+        :amount => (@listing.price * 100).floor,
+        :currency => 'usd',
+        :card => token
+        )
+      flash[:notice] = 'Thanks for ordering'
+    rescue Stripe::CardError => e
+      flash[:danger] = e.message
+    end
+
     respond_to do |format|
       if @order.save
-        format.html { redirect_to :root, notice: 'Order was successfully created.' }
+        format.html { redirect_to :root }
         format.json { render action: 'show', status: :created, location: @order }
       else
         format.html { render action: 'new' }
@@ -67,6 +80,14 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url }
       format.json { head :no_content }
     end
+  end
+
+  def sales
+    @orders = Order.where({:seller => current_user}).order('created_at desc')
+  end
+
+   def purchases
+    @orders = Order.where({:buyer => current_user}).order('created_at desc')
   end
 
   private
